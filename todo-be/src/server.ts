@@ -1,37 +1,45 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-import { WebSocketServer } from "ws";
-const dotenv = require('dotenv').config();
-const redis = require('redis');
-const connectToDb = require('./db');
-const PORT = process.env.PORT 
+import dotenv from 'dotenv';
+dotenv.config();
 
-connectToDb();
+
+import express from 'express';
+import http from 'http';
+import bodyParser from 'body-parser';
+import connectToMongoDb from './services/connectToMongoDb';
+import startWebSocketServer from "./services/startWebSocketServer";
+import cors from 'cors';
+
+import apiRouter from './routes/api';
+
+const PORT = process.env.PORT 
+console.log({PORT})
+
+const {
+    closeMongoConnection
+} = connectToMongoDb();
+
 const app = express();
 app.use(bodyParser.json());
 
-const wss = new WebSocketServer({ noServer: true });
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+}));
 
+app.get('/ping', (req, res) => {
+    res.send('pong');
+});
 
-// wss.on('connection', (ws) => {
-//     console.log('Client connected');
-  
-//     ws.on('message', (message) => {
-//       handleMessage(ws, message.toString());
-//     });
-  
-//     ws.on('close', () => {
-//       console.log('Client disconnected');
-//     });
-//   });
+app.use('/api', apiRouter);
 
+const server = http.createServer(app).listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
 
-const server = app.listen(PORT, ()=> {
-    console.log(`Server is running on port ${PORT}`);
-})
+startWebSocketServer(server);
 
-// server.on('upgrade', (request, socket, head) => {
-//     wss.handleUpgrade(request, socket, head, socket => {
-//         wss.emit('connection', socket, request);
-//     });
-// }
+process.on('SIGINT', async () => {
+    console.log('Received SIGINT');
+    await closeMongoConnection(true);
+    process.exit(0);
+});
