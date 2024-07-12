@@ -17,16 +17,13 @@ const startWebSocketServer = async (server: http.Server) => {
     io.on('connection', (socket) => {
         console.debug('a user connected');
 
-        socket.send("hello", { message: "Hello from server" });
-
-        socket.on('add', async (data) => {
-            console.debug('add', data);
-        }); 
+        socket.send("hello", { message: "Hello from server" }); 
 
         socket.on('disconnect', () => {
             console.debug('user disconnected');
         });
     });
+
 };
 
 export default startWebSocketServer;

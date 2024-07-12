@@ -1,14 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
-
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import connectToMongoDb from './services/connectToMongoDb';
 import startWebSocketServer from "./services/startWebSocketServer";
 import cors from 'cors';
-
 import apiRouter from './routes/api';
 
 const PORT = process.env.PORT 
