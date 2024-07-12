@@ -3,7 +3,7 @@ import http from "http";
 
 const startWebSocketServer = async (server: http.Server) => {
     const io = new Server(server, {
-        path: '/',
+        path: '/ws',
         allowEIO3: true,
         cors: {
             origin: process.env.CORS_ORIGIN,
@@ -17,6 +17,8 @@ const startWebSocketServer = async (server: http.Server) => {
     io.on('connection', (socket) => {
         console.debug('a user connected');
 
+        socket.send("hello", { message: "Hello from server" });
+
         socket.on('add', async (data) => {
             console.debug('add', data);
         }); 
@@ -28,4 +30,3 @@ const startWebSocketServer = async (server: http.Server) => {
 };
 
 export default startWebSocketServer;
-

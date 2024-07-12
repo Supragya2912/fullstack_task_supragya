@@ -1,0 +1,105 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px; 
+    max-height: 600px; 
+    margin: 140px auto;
+    border: 2px solid gray;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f0f4f8, #e2e8f0); 
+    font-family: Arial, sans-serif;
+  }
+  
+
+  .header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .container > div:nth-child(2) {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input[type='text'] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    width: 100%; /* Adjust to fit the container width */
+  }
+  
+  button {
+    background-color: #92400E;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  /* Style the plus icon */
+  button .plus-icon {
+    background-color: #fff;
+    color: #92400E;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  /* Style the scrollable notes section */
+  .container > div:nth-child(3) {
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  /* Style individual note items */
+  .note-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .container > div:nth-child(3)::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  /* Track */
+  .container > div:nth-child(3)::-webkit-scrollbar-track {
+    background: white; /* Background of the scrollbar track */
+  }
+  
+  /* Handle */
+  .container > div:nth-child(3)::-webkit-scrollbar-thumb {
+    background-color: #B98565; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    border: 3px solid #f0f4f8; /* Adds space around the scrollbar thumb */
+  }
+  
+  

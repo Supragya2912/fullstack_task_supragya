@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import useSocket from './services/ws';
+import { Route, Routes } from 'react-router-dom';
+import Notes from './pages/Notes';
 
-function App() {
+const App: React.FC = () => {
   const socket = useSocket();
   
   useEffect(() => {
@@ -17,13 +19,13 @@ function App() {
     return () => {
         socket.off('message', messageListener);
     };
-}, [socket]);
+  }, [socket]);
 
   return (
-    <div className="App">
-      <h1>Todo app</h1>
-      <h2> This is todo</h2>
-    </div>
+  
+      <Routes>
+        <Route path="/" element={<Notes/>}  />
+      </Routes>
   );
 }
 
