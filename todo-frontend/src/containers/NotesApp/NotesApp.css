@@ -40,6 +40,7 @@
     border-radius: 5px;
     outline: none;
     width: 100%;
+    margin-right: 10px;
   }
   
   button {
@@ -53,6 +54,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    width: 100px;
   }
   
   button .plus-icon {
@@ -79,7 +81,6 @@
 
   .note-item {
     padding: 6px;
-
   }
 
   .container > div:nth-child(3)::-webkit-scrollbar {

@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const uri: string = process.env.MONGO_URI as string;
 const mongoDbName: string = process.env.MONGO_DB as string;
 
-console.debug('Mongo URI:', uri);
 interface ConnectToMongoDbResponse {
   closeMongoConnection: (force?: boolean) => Promise<void>;
 }
@@ -31,7 +30,7 @@ const connectToMongoDb = (): ConnectToMongoDbResponse => {
   });
 
   return {
-    closeMongoConnection: mongoose.connection.close,
+    closeMongoConnection: mongoose.connection.close.bind(mongoose.connection),
   };
 };
 

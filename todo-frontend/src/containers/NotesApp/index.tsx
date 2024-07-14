@@ -18,7 +18,7 @@ const Notes: React.FC = () => {
       <div>
         {Array.isArray(tasks) && tasks.length > 0 ? (
           tasks.map((task) => (
-            <div>
+            <div key={task.contentId}>
               <ListTask key={task.contentId} name={task.content} />
               <hr/>
             </div>
