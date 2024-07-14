@@ -1,1 +1,1 @@
-export const MAX_CACHE_SIZE = 5;
+export const MAX_CACHE_SIZE = 50;

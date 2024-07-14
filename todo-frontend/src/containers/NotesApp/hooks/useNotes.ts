@@ -22,13 +22,10 @@ const useNotes = () => {
 
   useEffect(() => {
     if (!socket) return;
-
     const messageListener = (message: ITask) => {
       dispatch(addTask(message));
     };
-
     socket.on("added", messageListener);
-
     return () => {
       socket.off("added", messageListener);
     };
